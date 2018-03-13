@@ -16,7 +16,7 @@ describe('WishList', function(){
     expect(wishList.getFoodList()).toEqual(["Salami", "Prosciutto", "Ham", "Steak"]);
   });
 
-  describe('add items to wish lists', function() {
+  describe('Add items to wish lists', function() {
    it('Adds item to beach list', function() {
      wishList.addToBeachList("Sun Glasses");
      newBeachList = ["Ball", "Bat", "Bodyboard", "Bucket", "Sun Glasses"]
@@ -26,6 +26,20 @@ describe('WishList', function(){
    it('Adds item to food list', function() {
      wishList.addToFoodList("Bread");
      newFoodList = ["Salami", "Prosciutto", "Ham", "Steak", "Bread"]
+     expect(wishList.getFoodList()).toEqual(newFoodList);
+   });
+  });
+
+  describe('Removes items from wish lists', function() {
+   it('Removes item from beach list', function() {
+     wishList.removeFromBeachList("Bat");
+     newBeachList = ["Ball", "Bodyboard", "Bucket"]
+     expect(wishList.getBeachList()).toEqual(newBeachList);
+   });
+
+   it('Removes item from food list', function() {
+     wishList.removeFromFoodList("Ham");
+     newFoodList = ["Salami", "Prosciutto", "Steak"]
      expect(wishList.getFoodList()).toEqual(newFoodList);
    });
   });
