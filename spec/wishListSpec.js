@@ -16,15 +16,29 @@ describe('WishList', function(){
     expect(wishList.getFoodList()).toEqual(["Salami", "Prosciutto", "Ham", "Steak"]);
   });
 
+  describe('add items to wish lists', function() {
+   it('Adds item to beach list', function() {
+     wishList.addToBeachList("Sun Glasses");
+     newBeachList = ["Ball", "Bat", "Bodyboard", "Bucket", "Sun Glasses"]
+     expect(wishList.getBeachList()).toEqual(newBeachList);
+   });
+
+   it('Adds item to food list', function() {
+     wishList.addToFoodList("Bread");
+     newFoodList = ["Salami", "Prosciutto", "Ham", "Steak", "Bread"]
+     expect(wishList.getFoodList()).toEqual(newFoodList);
+   });
+  });
+
   describe('Clear wish lists', function() {
    it('Clears beach list', function() {
      wishList.clearBeachList();
      expect(wishList.getBeachList()).toEqual([]);
    });
 
-   it('Clears beach list', function() {
+   it('Clears food list', function() {
      wishList.clearFoodList();
      expect(wishList.getFoodList()).toEqual([]);
    });
- });
+  });
 });
