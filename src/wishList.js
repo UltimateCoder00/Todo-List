@@ -14,3 +14,11 @@ WishList.prototype.getBeachList = function() {
 WishList.prototype.getFoodList = function() {
   return this._foodList;
 };
+
+WishList.prototype.clearBeachList = function() {
+  this._beachList = [];
+};
+
+WishList.prototype.clearFoodList = function() {
+  this._foodList = [];
+};
