@@ -15,4 +15,16 @@ describe('WishList', function(){
   it('Wish list has default food list', function() {
     expect(wishList.getFoodList()).toEqual(["Salami", "Prosciutto", "Ham", "Steak"]);
   });
+
+  describe('Clear wish lists', function() {
+   it('Clears beach list', function() {
+     wishList.clearBeachList();
+     expect(wishList.getBeachList()).toEqual([]);
+   });
+
+   it('Clears beach list', function() {
+     wishList.clearFoodList();
+     expect(wishList.getFoodList()).toEqual([]);
+   });
+ });
 });
