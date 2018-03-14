@@ -11,6 +11,16 @@ $(document).ready(function() {
     deleteFromBeachList();
   });
 
+  $("#add-food-item").on('click', function(e){
+    e.preventDefault();
+    addToFoodList();
+  });
+
+  $("#remove-food-item").on('click', function(e){
+    e.preventDefault();
+    deleteFromFoodList();
+  });
+
   function addToBeachList() {
     var beachItem = $("#new-beach-item").val();
 
@@ -20,9 +30,24 @@ $(document).ready(function() {
     }
   }
 
+  function addToFoodList() {
+    var foodItem = $("#new-food-item").val();
+
+    if (foodItem != "") {
+      $("#food-item").append("<li id=" + foodItem + "-food-item class=" + foodItem + "-food-item>" + foodItem + "</li>");
+      $("#new-food-item").val("");
+    }
+  }
+
   function deleteFromBeachList() {
     var beachItem = $("#old-beach-item").val();
     $("#" + beachItem + "-beach-item").remove();
     $("#old-beach-item").val("");
+  }
+
+  function deleteFromFoodList() {
+    var foodItem = $("#old-food-item").val();
+    $("#" + foodItem + "-food-item").remove();
+    $("#old-food-item").val("");
   }
 });
