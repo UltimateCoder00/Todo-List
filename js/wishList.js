@@ -63,12 +63,14 @@ $(document).ready(function() {
 
   function deleteFromBeachList() {
     var beachItem = $("#old-beach-item").val();
+    wishList.removeFromBeachList(beachItem);
     $("#" + beachItem + "-beach-item").remove();
     $("#old-beach-item").val("");
   }
 
   function deleteFromFoodList() {
     var foodItem = $("#old-food-item").val();
+    wishList.removeFromFoodList(foodItem);
     $("#" + foodItem + "-food-item").remove();
     $("#old-food-item").val("");
   }
