@@ -25,7 +25,6 @@ $(document).ready(function() {
   function initialise() {
     displayInializedBeachItems();
     displayInializedFoodItems();
-
   }
 
   function displayInializedBeachItems() {
@@ -44,6 +43,7 @@ $(document).ready(function() {
 
   function addToBeachList() {
     var beachItem = $("#new-beach-item").val();
+    wishList.addToBeachList(beachItem);
 
     if (beachItem != "") {
       $("#beach-item").append("<li id=" + beachItem + "-beach-item class=" + beachItem + "-beach-item>" + beachItem + "</li>");
@@ -53,6 +53,7 @@ $(document).ready(function() {
 
   function addToFoodList() {
     var foodItem = $("#new-food-item").val();
+    wishList.addToFoodList(foodItem);
 
     if (foodItem != "") {
       $("#food-item").append("<li id=" + foodItem + "-food-item class=" + foodItem + "-food-item>" + foodItem + "</li>");
