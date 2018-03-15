@@ -1,5 +1,6 @@
 $(document).ready(function() {
   var wishList = new WishList();
+  initialise();
 
   $("#add-beach-item").on('click', function(e){
     e.preventDefault();
@@ -20,6 +21,26 @@ $(document).ready(function() {
     e.preventDefault();
     deleteFromFoodList();
   });
+
+  function initialise() {
+    displayInializedBeachItems();
+    displayInializedFoodItems();
+
+  }
+
+  function displayInializedBeachItems() {
+    var beachItems = wishList.getBeachList();
+    for (i = 0; i < beachItems.length; i++) {
+      $("#beach-item").append("<li id=" + beachItems[i] + "-beach-item class=" + beachItems[i] + "-beach-item>" + beachItems[i] + "</li>");
+    }
+  }
+
+  function displayInializedFoodItems() {
+    var foodItems = wishList.getFoodList()
+    for (i = 0; i < foodItems.length; i++) {
+      $("#food-item").append("<li id=" + foodItems[i] + "-food-item class=" + foodItems[i] + "-food-item>" + foodItems[i] + "</li>");
+    }
+  }
 
   function addToBeachList() {
     var beachItem = $("#new-beach-item").val();
