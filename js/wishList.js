@@ -7,19 +7,29 @@ $(document).ready(function() {
     addToBeachList();
   });
 
-  $("#remove-beach-item").on('click', function(e){
-    e.preventDefault();
-    deleteFromBeachList();
-  });
-
   $("#add-food-item").on('click', function(e){
     e.preventDefault();
     addToFoodList();
   });
 
+  $("#remove-beach-item").on('click', function(e){
+    e.preventDefault();
+    deleteFromBeachList();
+  });
+
   $("#remove-food-item").on('click', function(e){
     e.preventDefault();
     deleteFromFoodList();
+  });
+
+  $("#clear-beach-items").on('click', function(e){
+    e.preventDefault();
+    clearBeachList();
+  });
+
+  $("#clear-food-items").on('click', function(e){
+    e.preventDefault();
+    clearFoodList();
   });
 
   function initialise() {
@@ -73,5 +83,21 @@ $(document).ready(function() {
     wishList.removeFromFoodList(foodItem);
     $("#" + foodItem + "-food-item").remove();
     $("#old-food-item").val("");
+  }
+
+  function clearBeachList() {
+    var beachItems = wishList.getBeachList();
+    for (i = 0; i < beachItems.length; i++) {
+      $("#" + beachItems[i] + "-beach-item").remove();
+    }
+    wishList.clearBeachList();
+  }
+
+  function clearFoodList() {
+    var foodItems = wishList.getFoodList();
+    for (i = 0; i < foodItems.length; i++) {
+      $("#" + foodItems[i] + "-food-item").remove();
+    }
+    wishList.clearFoodList();
   }
 });
