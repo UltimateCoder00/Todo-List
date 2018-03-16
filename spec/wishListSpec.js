@@ -55,4 +55,18 @@ describe('WishList', function(){
      expect(wishList.getFoodList()).toEqual([]);
    });
   });
+
+  describe('Checks if lists are empty', function() {
+   it('Is beach list empty', function() {
+     expect(wishList.isBeachListEmpty()).toEqual(false);
+     wishList.clearBeachList();
+     expect(wishList.isBeachListEmpty()).toEqual(true);
+   });
+
+   it('Is food list empty', function() {
+     expect(wishList.isFoodListEmpty()).toEqual(false);
+     wishList.clearFoodList();
+     expect(wishList.isFoodListEmpty()).toEqual(true);
+   });
+  });
 });
