@@ -2,32 +2,32 @@ $(document).ready(function() {
   var wishList = new WishList();
   initialise();
 
-  $("#add-beach-item").on('click', function(e){
+  $("#add-beach-item").on('click', function(e) {
     e.preventDefault();
     addToBeachList();
   });
 
-  $("#add-food-item").on('click', function(e){
+  $("#add-food-item").on('click', function(e) {
     e.preventDefault();
     addToFoodList();
   });
 
-  $("#remove-beach-item").on('click', function(e){
+  $("#remove-beach-item").on('click', function(e) {
     e.preventDefault();
     deleteFromBeachList();
   });
 
-  $("#remove-food-item").on('click', function(e){
+  $("#remove-food-item").on('click', function(e) {
     e.preventDefault();
     deleteFromFoodList();
   });
 
-  $("#clear-beach-items").on('click', function(e){
+  $("#clear-beach-items").on('click', function(e) {
     e.preventDefault();
     clearBeachList();
   });
 
-  $("#clear-food-items").on('click', function(e){
+  $("#clear-food-items").on('click', function(e) {
     e.preventDefault();
     clearFoodList();
   });
@@ -38,16 +38,16 @@ $(document).ready(function() {
   }
 
   function displayInializedBeachItems() {
-    var beachItems = wishList.getBeachList();
-    for (i = 0; i < beachItems.length; i++) {
-      $("#beach-item").append("<li id=" + beachItems[i] + "-beach-item class=" + beachItems[i] + "-beach-item>" + beachItems[i] + "</li>");
-    }
+    displayInializedListItems("beach", wishList.getBeachList());
   }
 
   function displayInializedFoodItems() {
-    var foodItems = wishList.getFoodList()
-    for (i = 0; i < foodItems.length; i++) {
-      $("#food-item").append("<li id=" + foodItems[i] + "-food-item class=" + foodItems[i] + "-food-item>" + foodItems[i] + "</li>");
+    displayInializedListItems("food", wishList.getFoodList());
+  }
+
+  function displayInializedListItems(list, wishList) {
+    for (i = 0; i < wishList.length; i++) {
+      $("#"+list+"-item").append("<li id=" + wishList[i] + "-"+list+"-item class=" + wishList[i] + "-"+list+"-item>" + wishList[i] + "</li>");
     }
   }
 
@@ -56,11 +56,8 @@ $(document).ready(function() {
 
     if (beachItem != "") {
       wishList.addToBeachList(beachItem);
-      $("#beach-item").append("<li id=" + beachItem + "-beach-item class=" + beachItem + "-beach-item>" + beachItem + "</li>");
-      $("#new-beach-item").val("");
-      window.alert("You've just added " + beachItem + " to the beach list");
-      $('#beach-remove-form').show();
-      $('#beach-clear-form').show();
+      addItemToList("beach", beachItem);
+      showRemoveClearBeachButtons();
     }
   }
 
@@ -69,12 +66,25 @@ $(document).ready(function() {
 
     if (foodItem != "") {
       wishList.addToFoodList(foodItem);
-      $("#food-item").append("<li id=" + foodItem + "-food-item class=" + foodItem + "-food-item>" + foodItem + "</li>");
-      $("#new-food-item").val("");
-      window.alert("You've just added " + foodItem + " to the food list");
-      $('#food-remove-form').show();
-      $('#food-clear-form').show();
+      addItemToList("food", foodItem);
+      showRemoveClearFoodButtons();
     }
+  }
+
+  function addItemToList(list, wishList) {
+    $("#"+list+"-item").append("<li id=" + wishList + "-"+list+"-item class=" + wishList + "-"+list+"-item>" + wishList + "</li>");
+    $("#new-"+list+"-item").val("");
+    window.alert("You've just added " + wishList + " to the "+list+" list");
+  }
+
+  function showRemoveClearBeachButtons() {
+    $('#beach-remove-form').show();
+    $('#beach-clear-form').show();
+  }
+
+  function showRemoveClearFoodButtons() {
+    $('#food-remove-form').show();
+    $('#food-clear-form').show();
   }
 
   function deleteFromBeachList() {
@@ -82,14 +92,10 @@ $(document).ready(function() {
 
     if (wishList.isItemInBeachList(beachItem)) {
       wishList.removeFromBeachList(beachItem);
-      $("#" + beachItem + "-beach-item").remove();
-      window.alert("You've just removed " + beachItem + " from the beach list");
+      deleteItemFromList("beach", beachItem);
     }
 
-    if (wishList.isBeachListEmpty()) {
-      $('#beach-remove-form').hide();
-      $('#beach-clear-form').hide();
-    }
+    hideRemoveClearBeachButtons()
     $("#old-beach-item").val("");
   }
 
@@ -98,36 +104,51 @@ $(document).ready(function() {
 
     if (wishList.isItemInFoodList(foodItem)) {
       wishList.removeFromFoodList(foodItem);
-      $("#" + foodItem + "-food-item").remove();
-      window.alert("You've just removed " + foodItem + " from the food list");
+      deleteItemFromList("food", foodItem);
     }
 
-    if (wishList.isFoodListEmpty()) {
-      $('#food-remove-form').hide();
-      $('#food-clear-form').hide();
-    }
+    hideRemoveClearFoodButtons()
     $("#old-food-item").val("");
+  }
+
+  function deleteItemFromList(list, wishList) {
+    $("#" + wishList + "-"+list+"-item").remove();
+    window.alert("You've just removed " + wishList + " from the "+list+" list");
   }
 
   function clearBeachList() {
     var beachItems = wishList.getBeachList();
-    for (i = 0; i < beachItems.length; i++) {
-      $("#" + beachItems[i] + "-beach-item").remove();
-    }
+    clearList("beach", beachItems);
     wishList.clearBeachList();
-    $('#beach-remove-form').hide();
-    $('#beach-clear-form').hide();
+    hideRemoveClearBeachButtons()
     window.alert("You've just cleared the beach list");
   }
 
   function clearFoodList() {
     var foodItems = wishList.getFoodList();
-    for (i = 0; i < foodItems.length; i++) {
-      $("#" + foodItems[i] + "-food-item").remove();
-    }
+    clearList("food", foodItems);
     wishList.clearFoodList();
-    $('#food-remove-form').hide();
-    $('#food-clear-form').hide();
+    hideRemoveClearFoodButtons()
     window.alert("You've just cleared the food list");
+  }
+
+  function clearList(list, wishList) {
+    for (i = 0; i < wishList.length; i++) {
+      $("#" + wishList[i] + "-"+list+"-item").remove();
+    }
+  }
+
+  function hideRemoveClearBeachButtons() {
+    if (wishList.isBeachListEmpty()) {
+      $('#beach-remove-form').hide();
+      $('#beach-clear-form').hide();
+    }
+  }
+
+  function hideRemoveClearFoodButtons() {
+    if (wishList.isFoodListEmpty()) {
+      $('#food-remove-form').hide();
+      $('#food-clear-form').hide();
+    }
   }
 });
