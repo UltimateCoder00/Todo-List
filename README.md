@@ -2,7 +2,7 @@
 ### Contents
 - [Summary](#summary)
 - [Description](#description)
-- [Future Extensions](#Future future_extensions)
+- [Future Extensions](#future_extensions)
 - [Program](#program)
 - [Test Driven Development (TDD) With Jasmine](#tdd)
 
@@ -36,7 +36,7 @@ Food items:
 * Style the front end
 
 ### <a name="program">Program</a>
-The use the program open:
+To use the program open:
 ```
 index.html
 ```
