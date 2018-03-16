@@ -56,6 +56,18 @@ describe('WishList', function(){
    });
   });
 
+  describe('Checks if item is in lists', function() {
+   it('Is item in beach list', function() {
+     expect(wishList.isItemInBeachList("Ball")).toEqual(true);
+     expect(wishList.isItemInBeachList("Cake")).toEqual(false);
+   });
+
+   it('Is item in food list', function() {
+     expect(wishList.isItemInFoodList("Salami")).toEqual(true);
+     expect(wishList.isItemInFoodList("Car")).toEqual(false);
+   });
+  });
+
   describe('Checks if lists are empty', function() {
    it('Is beach list empty', function() {
      expect(wishList.isBeachListEmpty()).toEqual(false);
