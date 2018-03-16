@@ -59,6 +59,7 @@ $(document).ready(function() {
       $("#beach-item").append("<li id=" + beachItem + "-beach-item class=" + beachItem + "-beach-item>" + beachItem + "</li>");
       $("#new-beach-item").val("");
       window.alert("You've just added " + beachItem + " to the beach list");
+      $('#beach-remove-form').show();
       $('#beach-clear-form').show();
     }
   }
@@ -71,6 +72,7 @@ $(document).ready(function() {
       $("#food-item").append("<li id=" + foodItem + "-food-item class=" + foodItem + "-food-item>" + foodItem + "</li>");
       $("#new-food-item").val("");
       window.alert("You've just added " + foodItem + " to the food list");
+      $('#food-remove-form').show();
       $('#food-clear-form').show();
     }
   }
@@ -85,6 +87,7 @@ $(document).ready(function() {
     }
 
     if (wishList.isBeachListEmpty()) {
+      $('#beach-remove-form').hide();
       $('#beach-clear-form').hide();
     }
     $("#old-beach-item").val("");
@@ -100,6 +103,7 @@ $(document).ready(function() {
     }
 
     if (wishList.isFoodListEmpty()) {
+      $('#food-remove-form').hide();
       $('#food-clear-form').hide();
     }
     $("#old-food-item").val("");
@@ -111,6 +115,7 @@ $(document).ready(function() {
       $("#" + beachItems[i] + "-beach-item").remove();
     }
     wishList.clearBeachList();
+    $('#beach-remove-form').hide();
     $('#beach-clear-form').hide();
     window.alert("You've just cleared the beach list");
   }
@@ -121,6 +126,7 @@ $(document).ready(function() {
       $("#" + foodItems[i] + "-food-item").remove();
     }
     wishList.clearFoodList();
+    $('#food-remove-form').hide();
     $('#food-clear-form').hide();
     window.alert("You've just cleared the food list");
   }
