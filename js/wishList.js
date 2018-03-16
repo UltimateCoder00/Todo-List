@@ -53,9 +53,9 @@ $(document).ready(function() {
 
   function addToBeachList() {
     var beachItem = $("#new-beach-item").val();
-    wishList.addToBeachList(beachItem);
 
     if (beachItem != "") {
+      wishList.addToBeachList(beachItem);
       $("#beach-item").append("<li id=" + beachItem + "-beach-item class=" + beachItem + "-beach-item>" + beachItem + "</li>");
       $("#new-beach-item").val("");
       window.alert("You've just added " + beachItem + " to the beach list");
@@ -64,9 +64,9 @@ $(document).ready(function() {
 
   function addToFoodList() {
     var foodItem = $("#new-food-item").val();
-    wishList.addToFoodList(foodItem);
 
     if (foodItem != "") {
+      wishList.addToFoodList(foodItem);
       $("#food-item").append("<li id=" + foodItem + "-food-item class=" + foodItem + "-food-item>" + foodItem + "</li>");
       $("#new-food-item").val("");
       window.alert("You've just added " + foodItem + " to the food list");
@@ -75,18 +75,24 @@ $(document).ready(function() {
 
   function deleteFromBeachList() {
     var beachItem = $("#old-beach-item").val();
-    wishList.removeFromBeachList(beachItem);
-    $("#" + beachItem + "-beach-item").remove();
+
+    if (wishList.isItemInBeachList(beachItem)) {
+      wishList.removeFromBeachList(beachItem);
+      $("#" + beachItem + "-beach-item").remove();
+      window.alert("You've just removed " + beachItem + " from the beach list");
+    }
     $("#old-beach-item").val("");
-    window.alert("You've just removed " + beachItem + " from the beach list");
   }
 
   function deleteFromFoodList() {
     var foodItem = $("#old-food-item").val();
-    wishList.removeFromFoodList(foodItem);
-    $("#" + foodItem + "-food-item").remove();
+
+    if (wishList.isItemInFoodList(foodItem)) {
+      wishList.removeFromFoodList(foodItem);
+      $("#" + foodItem + "-food-item").remove();
+      window.alert("You've just removed " + foodItem + " from the food list");
+    }
     $("#old-food-item").val("");
-    window.alert("You've just removed " + foodItem + " from the food list");
   }
 
   function clearBeachList() {
