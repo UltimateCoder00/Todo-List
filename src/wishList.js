@@ -40,3 +40,11 @@ WishList.prototype.clearBeachList = function() {
 WishList.prototype.clearFoodList = function() {
   this._foodList = [];
 };
+
+WishList.prototype.isBeachListEmpty = function() {
+  return this._beachList.length == 0;
+};
+
+WishList.prototype.isFoodListEmpty = function() {
+  return this._foodList.length == 0;
+};
