@@ -59,6 +59,7 @@ $(document).ready(function() {
       $("#beach-item").append("<li id=" + beachItem + "-beach-item class=" + beachItem + "-beach-item>" + beachItem + "</li>");
       $("#new-beach-item").val("");
       window.alert("You've just added " + beachItem + " to the beach list");
+      $('#beach-clear-form').show();
     }
   }
 
@@ -70,6 +71,7 @@ $(document).ready(function() {
       $("#food-item").append("<li id=" + foodItem + "-food-item class=" + foodItem + "-food-item>" + foodItem + "</li>");
       $("#new-food-item").val("");
       window.alert("You've just added " + foodItem + " to the food list");
+      $('#food-clear-form').show();
     }
   }
 
