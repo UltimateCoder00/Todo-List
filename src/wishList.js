@@ -41,6 +41,14 @@ WishList.prototype.clearFoodList = function() {
   this._foodList = [];
 };
 
+WishList.prototype.isItemInBeachList = function(item) {
+  return this._beachList.indexOf(item) > -1;
+};
+
+WishList.prototype.isItemInFoodList = function(item) {
+  return this._foodList.indexOf(item) > -1;
+};
+
 WishList.prototype.isBeachListEmpty = function() {
   return this._beachList.length == 0;
 };
